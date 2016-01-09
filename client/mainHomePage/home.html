@@ -1,0 +1,20 @@
+<template name="home">
+    {{#if currentUser}} {{>dashboard}} {{else}}
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        {{>template_navbar}} 
+        <div class="android-content mdl-layout__content ">
+            <div class="android-be-together-section mdl-typography--text-center ">
+                <div class="logo-font android-slogan ">be together. not the same.</div>
+                <div class="logo-font android-sub-slogan ">welcome to android... be yourself. do your thing. see what's going on.</div>
+                <a href="#about" title="" class="scroll-down"><i class="fa animated infinite bounce ti-arrow-down"></i></a>
+            </div>
+            {{> template_product_info}}
+            {{> template_team}}
+            {{> template_copyright}}
+        </div>
+    </div>
+        {{> template_forgotpassword}}
+        {{> template_signin}}
+        {{> template_signup}}
+    {{/if}}
+</template>

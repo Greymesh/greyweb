@@ -1,0 +1,9 @@
+<template name="dashboard">
+    <!-- <div class="dashHome horizontal-align"> -->
+    {{#if currentUser}}
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
+        {{> siderBar}} {{> mainLayout}}
+    </div>
+    {{/if}}
+    <!-- </div> -->
+</template>

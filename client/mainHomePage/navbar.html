@@ -1,0 +1,31 @@
+<template name="template_navbar">
+    <div class="android-header mdl-layout__header mdl-layout__header--waterfall" style="
+    background-color: #fff;overflow: initial;/*border-bottom: 1px solid #f14040*/">
+        <div class=" mdl-layout__header-row">
+            <span class="android-title mdl-layout-title "><a id="logo-container " href="# " class="brand-logo "><img src="images/logo_colored.png " height="40px "></a></span>
+            <div class="android-header-spacer mdl-layout-spacer "></div>
+            <div class="android-navigation-container mdl-layout--large-screen-only ">
+                <nav class="android-navigation mdl-navigation" id="navbar_large_screen">
+                    <a class="mdl-navigation__link nav-button mdl-js-ripple-effect btn" href=" "> Download app </a>
+                    <a class="mdl-navigation__link nav-button mdl-js-ripple-effect btn" id="contact_info" href=" "> Contact Us </a>
+                    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" id="contactUsDropdown" for="contact_info">
+                        <a class="mdl-menu__item" href="mailto:customercare@greymesh.com">Email <span class="pull-right">customercare@greymesh.com</span></a>
+                        <a class="mdl-menu__item" href="# ">Contact <span class="pull-right"> 0-00000-00000</span></a>
+                        <a class="mdl-menu__item" href="# ">WhatsApp <span class="pull-right">0-0000-000-000</span></a>
+                    </ul>
+                    {{#if currentUser}} {{else}}
+                    <a class="mdl-navigation__link nav-button mdl-js-ripple-effect btn" data-toggle="modal" href="#dosignup">SIGN UP</a>
+                    <a class="mdl-navigation__link nav-button mdl-js-ripple-effect btn" style="border: 1px solid #f14040;" data-toggle="modal" href="#dosignin">SIGN IN</a> {{/if}}
+                </nav>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-layout--small-screen-only" id="more-button ">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect " for="more-button ">
+                <li class="mdl-menu__item">5.0 Lollipop</li>
+                <li class="mdl-menu__item">4.4 KitKat</li>
+                <li class="mdl-menu__item">4.3 Jelly Bean</li>
+            </ul>
+        </div>
+    </div>
+</template>

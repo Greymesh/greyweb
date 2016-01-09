@@ -1,0 +1,49 @@
+<template name="template_contact">
+    <section class="contact">
+        <!-- contact info -->
+        <div class="container" id="contact">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="section-heading">Contact Us</h3>
+                </div>
+            </div>
+            <div class="row" style="align:center">
+                <div class="col-lg-4 text-center">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <p class="large contact_text">Feel free to drop us a message</p>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message." rows="7"></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn-xl">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-8 text-center">
+                    <p class="large contact_text">We are based in Bengaluru. Reach us</p>
+                    <iframe class="img-centered" width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="auto" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62211.170155951615!2d77.66239931143656!3d12.959169861095045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae13b4551d0957%3A0x597894d77e1e4919!2sMarathahalli%2C+Bengaluru%2C+Karnataka%2C+India!5e0!3m2!1sen!2sus!4v1447526083822"></iframe>
+                </div>
+            </div>
+        </div>
+        <br>
+    </section>
+</template>

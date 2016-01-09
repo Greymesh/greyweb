@@ -1,0 +1,44 @@
+<template name="mainLayout">
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="mdl-layout__header mdl-color--white">
+            <div class="mdl-layout__header-row" style="padding-left:40px;">
+                <span class="mdl-layout-title"><a href="home">
+                    <img src="images/logo_colored.png" height="40px"></a></span>
+                <div class="mdl-layout-spacer"></div>
+                <nav id="dash_navbar" class="mdl-navigation">
+                    <a class="mdl-navigation__link mdl-js-ripple-effect btn" id="contact_info" href="">Contact Us</a>
+                    <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" id="contactUsDropdown" for="contact_info">
+                        <a class="mdl-menu__item" href="mailto:customercare@greymesh.com">Email <span class="pull-right">customercare@greymesh.com</span></a>
+                        <a class="mdl-menu__item" href="# ">Contact <span class="pull-right"> 0-00000-00000</span></a>
+                        <a class="mdl-menu__item" href="# ">WhatsApp<span class="pull-right">0-0000-000-000</span></a>
+                    </ul>
+                    <a class="mdl-navigation__link mdl-js-ripple-effect btn" href="">Download App</a>
+                </nav>
+            </div>
+        </div>
+        <!-- {{>contentCard}} -->
+    </main>
+</template>
+
+<!-- 
+<template name="contentCard">
+    <div class="content-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Welcome</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      Get Started
+    </a>
+        </div>
+        <div class="mdl-card__menu">
+            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">share</i>
+            </button>
+        </div>
+    </div>
+</template>
+ -->

@@ -1,0 +1,15 @@
+.horizontal-align {
+                position: relative;
+                text-align: left;
+                /*white-space: nowrap;*/
+}
+
+.horizontal-align > * {
+                box-sizing: border-box;
+                 -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                vertical-align: top;
+                 display: inline-block;  /* horizontal alignment */
+                /*display: block; // verticle */
+
+}

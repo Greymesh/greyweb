@@ -1,0 +1,44 @@
+body {
+    height: 100%;
+}
+
+.dashHome {
+    background-color: #eeeeee;
+}
+
+.dash-home_sidebar .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.56);
+    margin-right: 32px;
+}
+
+.dash-home_sidebar .mdl-navigation__link {
+    text-align: left;
+    font-weight: 500px !important;
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+}
+
+.sideBarParent {
+    height: 100vh;
+    width: 20%;
+    background-color: #5984AC;
+}
+
+.widgetContainer {
+    height: 100vh;
+    width: 79%;
+    border: 1px solid lightgrey;
+    /*background-color: #ffffff;*/
+}
+

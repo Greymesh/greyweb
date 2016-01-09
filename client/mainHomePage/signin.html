@@ -1,0 +1,65 @@
+<template name="template_signin">
+    <div class="modal fade" id="dosignin" data-backdrop="true" data-keyboard="false" style="display: block;" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-nobroker-header">
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button" style="float:right;" data-dismiss="modal">
+                        <i class="material-icons left">close</i>
+                    </button>
+                    <h5 class="modal-title"> Login </h5>
+                </div>
+                <div class="modal-body register row">
+                    <div class="col-md-6">
+                        <h6 style="margin-top:5px"> Use your Greymesh account </h6>
+                        <form class="form-horizontal" role="form" method="post" action="#">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="form-username" pattern="(^\s*[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$)|(^[0-9]{10}$)">
+                                <label class="mdl-textfield__label" for="form-username">Email Address</label>
+                                <span class="mdl-textfield__error">Please enter a valid email</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="form-password">
+                                <label class="mdl-textfield__label" for="form-password">Enter Password</label>
+                                <span class="mdl-textfield__error">Please enter a valid Password</span>
+                            </div>
+                            <button type="submit" id="signInButton" class="btn btn-ownercontact btn-block btn-large large padded-btn-block" onclick="doSignInWithPassword();"> Login </button>
+                            <div class="seperator"> or </div>
+                            <div class="text-left">Forgot your Password?
+                                <a class="modal-link waves-effect waves-light" data-dismiss="modal" data-toggle="modal" href="#doforgotpassword"> Reset Now! </a>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6" style=" border-left: 1px solid #cccccc">
+                        <h6 style="margin-top:5px"> Or do it the social way </h6>
+                        <!--google-->
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <div class="col-sm-9">
+                                    <a class="btn btn-link-1 btn-link-1-google-plus" href="#" id="login-google"><i class="fa fa-google-plus"></i> Login with Google </a></div>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <div class="seperator"> or </div>
+                        <!--fb sign-->
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-9">
+                                <div class="col-sm-9">
+                                    <a class="btn btn-link-1 btn-link-1-facebook" href="#" id="login-facebook"><i class="fa fa-facebook"></i> Login with Facebook</a></div>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        <p><i>* we remember our promise of no posts on your wall</i></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="text-left">
+                        Don't have an account?
+                        <a href="#" class="modal-link" onclick="toggleLoginInOrSignUp();"> Sign Up Now! </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
