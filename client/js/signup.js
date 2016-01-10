@@ -24,40 +24,20 @@ Template.template_signup.events({
                 }
             }
             Meteor.call('createNewUser', data, function(err) {
-                    if (err) {
-                        console.log('Login failed');
-                    } else {
-
-                        Meteor.loginWithPassword(name, password, function(err) {
-                            if (!err) {
-                                $('.modal-backdrop').remove();
-
-                                if (Meteor.userId()) {
-                                    Router.go('/home');
-                                }
+                if (err) {
+                    console.log('Login failed');
+                } else {
+                    Meteor.loginWithPassword(name, password, function(err) {
+                        if (!err) {
+                            console.log('createNewUser Meteor call loginWithPassword');
+                            $('.modal-backdrop').remove();
+                            if (Meteor.userId()) {
+                                Router.go('/home');
                             }
-                        })
-
-                    }
-                })
-                // Accounts.createUser({
-                //     username: name,
-                //     email: email,
-                //     password: password
-                // }, function(err) {
-                //     if (err) {
-                //         if (err.message === 'Email already exists. [403]') {
-                //             alert("We are sorry but this email is already used.");
-                //             console.log('We are sorry but this email is already used.');
-                //         } else {
-                //             console.log('We are sorry but something went wrong.');
-                //         }
-                //     } else {
-                //         $("#dosignup").modal('hide');
-                //         $('.modal-backdrop').remove();
-                //         console.log('Congrats new Meteorite, you\'re in!');
-                //     }
-                // });
+                        }
+                    })
+                }
+            })
         }
         return false;
     },

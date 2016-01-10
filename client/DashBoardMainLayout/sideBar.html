@@ -1,39 +1,22 @@
 <template name="siderBar">
-    <!-- <div class="sideBarParent"> -->
     {{> profile}}
-    <!-- </div> -->
 </template>
 <template name="profile">
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">{{currentUser.profile.name}}</span>
-        <nav class="mdl-navigation dash-home_sidebar">
-            <a class=" mdl-navigation__link" href="">
-                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i> Home
-            </a>
-            <a class=" mdl-navigation__link" href="">
-                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">credit_card</i> Payment
-            </a>
-            <a class=" mdl-navigation__link" href="">
-                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_circle</i> Account
-            </a>
-            <a class=" mdl-navigation__link" href="">
-                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i> Settings
-            </a>
-            <a class=" mdl-navigation__link" href="" id="logout">
-                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i> Logout
-            </a>
+    <div class="mdl-layout__drawer" style="padding:15px;">
+        <img src="{{currentUser.profile.picture}}" class="img-responsive img-circle img-centered" style="height:120px;">
+        <span style="padding-top:20px;font-size: 15px;">{{currentUser.profile.name}}</span>
+        <div class="android-drawer-separator"></div>
+        <nav id="dash_sidebar" class="mdl-navigation dash-home_sidebar">
+            <a class="mdl-navigation__link mdl-js-ripple-effect btn" href="">
+                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i> Home </a>
+            <a class="mdl-navigation__link mdl-js-ripple-effect btn" href="">
+                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">credit_card</i> Payment </a>
+            <a class="mdl-navigation__link mdl-js-ripple-effect btn" href="">
+                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">account_circle</i> Account </a>
+            <a class="mdl-navigation__link mdl-js-ripple-effect btn" href="">
+                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i> Settings </a>
+            <a class="mdl-navigation__link mdl-js-ripple-effect btn" href="" id="logout">
+                <i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i> Logout </a>
         </nav>
     </div>
-    <!-- <div style="height:150px;text-align:center;color:white"> -->
-    <!-- <div style="margin:20px 0 20px 0">
-            <div style="width:100px;height:100px;background:white;margin:0 auto;border-radius: 20px">
-            </div>
-            <div>
-                {{currentUser.profile.name}}
-            </div>
-            {{#if currentUser}}
-            <button class="btn btn-danger btn-logout" id="logout">Logout {{currentUser.profile.name}}</button>
-            {{/if}}
-        </div> -->
-    <!-- </div> -->
 </template>

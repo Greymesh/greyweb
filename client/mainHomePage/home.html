@@ -1,7 +1,7 @@
 <template name="home">
     {{#if currentUser}} {{>dashboard}} {{else}}
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        {{>template_navbar}} 
+        {{>template_navbar}} {{> template_drawer}}
         <div class="android-content mdl-layout__content ">
             <div class="android-be-together-section mdl-typography--text-center ">
                 <div class="logo-font android-slogan ">be together. not the same.</div>

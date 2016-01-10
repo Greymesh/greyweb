@@ -3,7 +3,7 @@ body {
     height: 100%;
     line-height: 30px;
     text-align: center;
-    font-family: 'PT Sans';
+    font-size: 13px !important;
 }
 
 .contact {
@@ -82,6 +82,7 @@ body {
 }
 
 .btn-ownercontact {
+    margin: auto;
     background-color: #f14040;
     color: #FFF;
     border: 1px solid #f14040;
@@ -100,14 +101,17 @@ a:focus {
     color: #f14040;
 }
 
+
 /*#team a,*/
+
 #nav_user_menu a,
 #contactUsDropdown a,
 #navbar_mobile a,
 #dash_sidebar a,
 #navbar_large_screen a {
     color: #37474f;
-    font-size: 13px !important;
+    font-size: 12px !important;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
 }
 
 #navbar_mobile a:focus,
@@ -126,6 +130,7 @@ a:focus {
     text-decoration: none !important;
     color: #fff;
     background-color: #f14040;
+    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
 }
 
 #contactUsDropdown li a:focus,
@@ -165,10 +170,6 @@ a:focus {
 
 /* css for team member contacts */
 
-/*.team-social-link {
-    color: #fff;
-}*/
-
 .google {
     color: #dd4b39;
 }
@@ -177,9 +178,9 @@ a:focus {
     border: 1px solid #dd4b39 !important;
     border-radius: 50%;
 }
- 
+
 .twitter {
-    color: #00cafb ;
+    color: #00cafb;
 }
 
 .twitter-border {
@@ -290,7 +291,7 @@ a:focus {
     font-size: 13px !important;
     text-decoration: none;
     line-height: 200%;
-    padding: 5px 24px;
+    padding: 5px 16px;
     margin: 2px;
 }
 
@@ -352,5 +353,3 @@ a:focus {
 .featurette-heading {
     font-size: 24px;
 }
-
-/**/

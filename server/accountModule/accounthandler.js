@@ -21,17 +21,16 @@ Accounts.onCreateUser(function(options, user) {
         }
     }
     console.log("this is user")
-
     console.log(user)
-
     return user;
 
 })
-Accounts.validateNewUser(function(user) {
-    if (user.username && user.username.length >= 3)
-        return true;
-    throw new Meteor.Error(403, "Username must have at least 3 characters");
-});
+
+// Accounts.validateNewUser(function(user) {
+//     if (user.username && user.username.length >= 3)
+//         return true;
+//     throw new Meteor.Error(403, "Username must have at least 3 characters");
+// });
 
 Meteor.methods({
     'createNewUser': function(userData) {
@@ -40,7 +39,6 @@ Meteor.methods({
         //     throw new Meteor.Error("not authorized");
         // }
         console.log("hereeeeeeeeeeeeeeee")
-
         var user = Meteor.user();
         console.log(user)
 
@@ -50,14 +48,10 @@ Meteor.methods({
             throw new Meteor.Error(422, 'Please include an email.');
 
         console.log("success")
-
         var userId = Accounts.createUser(userData)
         console.log(userId)
         this.setUserId(userId)
-            // user = Meteor.users.findOne(userId)
-
+        // user = Meteor.users.findOne(userId)
         // Accounts.sendEnrollmentEmail(userId);
-
     }
-
 })
