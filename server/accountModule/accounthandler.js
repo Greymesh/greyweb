@@ -1,4 +1,4 @@
-/*pass in more information to the client*/
+/* pass in more information to the client*/
 Accounts.onCreateUser(function(options, user) {
     console.log("loggggggggggggggggggggggggggggggg")
     console.log(options);
@@ -26,11 +26,9 @@ Accounts.onCreateUser(function(options, user) {
 
 })
 
-// Accounts.validateNewUser(function(user) {
-//     if (user.username && user.username.length >= 3)
-//         return true;
-//     throw new Meteor.Error(403, "Username must have at least 3 characters");
-// });
+Accounts.config({
+    sendVerificationEmail: true
+})
 
 Meteor.methods({
     'createNewUser': function(userData) {
