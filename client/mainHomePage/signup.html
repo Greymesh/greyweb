@@ -10,6 +10,8 @@
                     <div>
                         <h6 style="margin-top:5px"> Create a Greymesh account</h6>
                         <form class="form-horizontal register-form" role="form" method="post" action="#">
+                            <div class="alert alert-danger" style="display:none;">
+                            </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input id="form-username" class="mdl-textfield__input" type="text" pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$">
                                 <label class="mdl-textfield__label" for="form-username">Your Name</label>
@@ -34,10 +36,10 @@
                         </form>
                     </div>
                 </div>
-                <p>By clicking "Sign up" you confirm that you accept the <a href="/terms-and-condition" target="_blank" data-popup="true">Terms of Service</a> and <a href="/privacy" target="_blank" data-popup="true">Privacy Policy</a>.</p>
+                <p>By clicking "Sign up" you confirm that you accept the <a href="#terms_and_conditions" data-toggle="modal" data-dismiss="modal" data-popup="true">Terms of Service</a> and <a href="/privacy" target="_blank" data-popup="true">Privacy Policy</a>.</p>
                 <div class="modal-footer">
                     <div class="text-left">
-                        Already a member? <a href="#" class="modal-link" onclick="toggleLoginInOrSignUp();"> Sign in </a>
+                        Already a member? <a href="#dosignin" class="modal-link" data-toggle="modal" data-dismiss="modal"> Sign in </a>
                     </div>
                 </div>
             </div>

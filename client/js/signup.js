@@ -26,15 +26,23 @@ Template.template_signup.events({
             Meteor.call('createNewUser', data, function(err, result) {
                 if (err) {
                     console.log('createNewUser Login failed');
+
+                    signUpForm
+                        .find(".alert")
+                        .html("Error! " + err["reason"])
+                        .fadeIn()
+                        .delay(5000)
+                        .fadeOut();
                 } else {
                     var email = result["email"];
                     $('.modal').modal('hide');
+                    signUpForm.find("input").val("");
+
                     Session.set("verificationEmail", email);
 
                     $("#email_verification").modal('show')
                 }
             })
-            signUpForm.find("input").val("");
 
 
         }

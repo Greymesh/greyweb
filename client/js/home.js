@@ -15,6 +15,7 @@ Template.home.rendered = function() {
         $('#dosignin').modal('toggle');
         $('#dosignup').modal('toggle');
     }
+
 }
 
 Subscription = new Mongo.Collection('subscriptions');

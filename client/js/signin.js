@@ -18,6 +18,14 @@ Template.template_signin.events({
             Meteor.loginWithPassword(email, password, function(err) {
                 if (err) {
                     console.log('These credentials are not valid.');
+                    $("#dosignin")
+                        .find(".alert")
+                        .html("Error! " + err["reason"])
+                        .fadeIn()
+                        .delay(5000)
+                        .fadeOut();
+                } else {
+                    $("#dosignin").find("input").val("")
                 }
             });
         }
