@@ -25,13 +25,9 @@ Template.template_signup.events({
             }
             Meteor.call('createNewUser', data, function(err) {
                 if (err) {
-                    console.log('Login failed');
+                    console.log('createNewUser Login failed');
                 } else {
-                    Meteor.loginWithPassword(name, password, function(err) {
-                        if (!err) {
-                            console.log('createNewUser Meteor call loginWithPassword');
-                        }
-                    })
+
                 }
             })
         }

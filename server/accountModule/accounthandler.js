@@ -10,8 +10,6 @@ Accounts.onCreateUser(function(options, user) {
         if (user.services.facebook) {
             var service = user.services.facebook;
             user.profile["email"] = service["email"];
-
-
         }
         if (user.services.google) {
             var service = user.services.google;
@@ -20,36 +18,64 @@ Accounts.onCreateUser(function(options, user) {
 
         }
     }
-    console.log("this is user")
-    console.log(user)
+    console.log("this is user");
+    console.log(user);
     return user;
-
 })
 
 Accounts.config({
-    sendVerificationEmail: true
+    sendVerificationEmail: true,
+    forbidClientAccountCreation: true
 })
 
 Meteor.methods({
     'createNewUser': function(userData) {
-
-        // if(!Meteor.userId()){
-        //     throw new Meteor.Error("not authorized");
-        // }
         console.log("hereeeeeeeeeeeeeeee")
         var user = Meteor.user();
         console.log(user)
 
-        // if (!user) // you can also check this.userId here
-        //     throw new Meteor.Error(401, 'Please login.');
         if (!userData.email)
             throw new Meteor.Error(422, 'Please include an email.');
 
         console.log("success")
-        var userId = Accounts.createUser(userData)
-        console.log(userId)
-        this.setUserId(userId)
-        // user = Meteor.users.findOne(userId)
-        // Accounts.sendEnrollmentEmail(userId);
+        var userId = Accounts.createUser(userData);
+        console.log(userId);
+        Accounts.sendVerificationEmail(userId, userData.email);
+        this.setUserId(userId);
     }
 })
+
+///
+/// RESETTING VIA EMAIL
+///
+
+// Method called by a user to request a password reset email. This is
+// the start of the reset process.
+Meteor.methods({
+    forgotPasswordMethod: function(options) {
+        var email = options.email;
+        console.log('@@@@@@forgotPasswordMethod');
+        console.log(email);
+        if (!email)
+            throw new Meteor.Error(400, "Need to set options.email");
+
+        var user = Meteor.users.findOne({
+            "emails.address": email
+        });
+        if (!user)
+            throw new Meteor.Error(403, "User not found");
+
+        Accounts.sendResetPasswordEmail(user._id, email);
+    },
+    resetPasswordMethod: function(resetData) {
+        console.log('@@@@@@resetPasswordMethod');
+        console.log(resetData.token);
+        console.log(resetData.password);
+        Accounts.resetPassword(resetData.token, resetData.password,
+            function(error) {
+                if (error) {
+                    console.log(error);
+                }
+            });
+    }
+});

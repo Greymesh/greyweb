@@ -127,3 +127,29 @@
 .team-card-square > .mdl-card__title {
     color: #fff;
 }
+
+.hide-background {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    /* XXX consider replacing with DXImageTransform */
+    background-color: #000000;
+    /* fallback for IE7-8 */
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.accounts-dialog {
+    border: 1px solid #ccc;
+    z-index: 1000;
+    background: white;
+    border-radius: 4px;
+    padding: 8px 12px;
+    width: 250px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    color: #333;
+}
