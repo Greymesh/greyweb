@@ -1,3 +1,7 @@
+Template.template_forgotpassword.rendered = function() {
+    $('#doforgotpassword').hide();
+}
+
 Template.template_forgotpassword.events({
     'submit #forgotPasswordForm': function(e, t) {
         e.preventDefault();
@@ -19,31 +23,10 @@ Template.template_forgotpassword.events({
                         console.log('We are sorry but something went wrong.');
                     }
                 } else {
-                    Session.set('s_forgotPasswordEmailID', email);
-                    Session.set('s_forgotPasswordVisible', true);
                     console.log('Email Sent. Check your mailbox.');
                 }
             });
         }
         return false;
-    },
-    'click #forgotPwdModal_close': function() {
-        console.log('click #forgotPwdModal_close');
-        Meteor.setTimeout(function() {
-            Session.set('s_forgotPasswordVisible', false);
-            Session.set('s_forgotPasswordEmailID', null);
-        }, 2000);
-        console.log(Session.get('s_forgotPasswordVisible'));
-        console.log(Session.get('s_forgotPasswordEmailID'));
     }
-});
-
-Template.template_forgotpassword.helpers({
-    getForgotPasswordVisible: function() {
-        return Session.get('s_forgotPasswordVisible');
-    },
-    getforgotPasswordEmailID: function() {
-        return Session.get('s_forgotPasswordEmailID');
-    },
-
 });

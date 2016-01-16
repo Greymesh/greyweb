@@ -1,7 +1,10 @@
 Template.template_resetpassword.rendered = function() {
-    if (Session.get('resetPwdToken')) {
+    // $('#doresetpassword').hide();
+    var token = Session.get('resetPasswordToken');
+    if (token) {
         $(".modal").hide();
         $("#doresetpassword").modal('show');
+
     }
 }
 
@@ -15,39 +18,42 @@ Template.template_resetpassword.events({
             passwordConfirm = resetPasswordForm.find('#resetPasswordconfirm').val();
 
         if (isNotEmpty(password) && areValidPasswords(password, passwordConfirm)) {
-            Accounts.resetPassword(Session.get('resetPwdToken'), password,
-                function(error) {
-                    if (error) {
-                        console.log(error);
-                    } else {
-                        console.log('resetPwdToken complete');
-                        Session.set('resetPwdToken', null);
-                        Session.set('justResetPwd', true);
-                    }
-                });
+            var data = {
+                password: password,
+                token: Session.get('resetPasswordToken'),
+            }
+            Meteor.call('resetPasswordMethod', data, function(err) {
+                if (err) {
+                    console.log('resetPasswordMethod Login failed');
+                    console.log(error);
+                } else {
+                    Session.set('resetPasswordToken', null);
+                    Session.set('justResetPassword', true);
+                }
+            });
         }
         return false;
     },
     'click #resetModal_close': function() {
         console.log('click #resetModal_close');
-        Meteor.setTimeout(function() {
-            Session.set('resetPwdToken', null);
-            Session.set('justResetPwd', false);
-        }, 2000);
+        Session.set('resetPasswordToken', null);
+        Session.set('justResetPassword', false);
     }
 });
 
 Template.template_resetpassword.helpers({
     visible: function() {
-        return Session.get('justResetPwd');
+        return Session.get('justResetPassword');
     },
     getResetPasswordToken: function() {
-        return Session.get('resetPwdToken');
+        return Session.get('resetPasswordToken');
     },
 
 });
 
 Accounts.onResetPasswordLink(function(token, done) {
     console.log('resetpassword Accounts onResetPasswordLink');
-    Session.set("resetPwdToken", token);
+    Session.set("resetPasswordToken", token);
+    console.log(token);
+    console.log(Session.get('resetPasswordToken'));
 });

@@ -61,6 +61,8 @@ Template.template_email_verification.helpers({
     },
     email: function() {
         return Session.get("verificationEmail");
+
+
     }
 })
 
