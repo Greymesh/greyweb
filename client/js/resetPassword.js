@@ -1,5 +1,11 @@
 Template.template_resetpassword.rendered = function() {
-    $('#doresetpassword').hide();
+    // $('#doresetpassword').hide();
+    var token = Session.get('resetPasswordToken');
+    if (token) {
+        $(".modal").hide();
+        $("#doresetpassword").modal('show');
+
+    }
 }
 
 Template.template_resetpassword.events({
@@ -49,15 +55,5 @@ Accounts.onResetPasswordLink(function(token, done) {
     console.log('resetpassword Accounts onResetPasswordLink');
     Session.set("resetPasswordToken", token);
     console.log(token);
-    $("#doresetpassword").modal();
     console.log(Session.get('resetPasswordToken'));
-});
-
-Accounts.onEmailVerificationLink(function(token, done) {
-    console.log('verify Email Token Accounts onEmailVerificationLink');
-    Accounts.verifyEmail(token, function(error) {
-        if (!error) {
-            Session.set('verifiedEmailToken', true);
-        }
-    });
 });

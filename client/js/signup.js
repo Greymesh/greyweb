@@ -23,14 +23,47 @@ Template.template_signup.events({
                     "name": name
                 }
             }
-            Meteor.call('createNewUser', data, function(err) {
+            Meteor.call('createNewUser', data, function(err, result) {
                 if (err) {
                     console.log('createNewUser Login failed');
                 } else {
+                    var email = result["email"];
+                    $('.modal').modal('hide');
+                    Session.set("verificationEmail", email);
 
+                    $("#email_verification").modal('show')
                 }
             })
+            signUpForm.find("input").val("");
+
+
         }
         return false;
     }
+});
+
+Template.template_email_verification.helpers({
+    isEmailVerified: function() {
+        var verifToken = Session.get('verifiedEmailToken');
+        if (verifToken) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    email: function() {
+        return Session.get("verificationEmail");
+
+
+    }
+})
+
+
+Accounts.onEmailVerificationLink(function(token, done) {
+    console.log('verify Email Token Accounts onEmailVerificationLink');
+    Accounts.verifyEmail(token, function(error) {
+        if (!error) {
+            Session.set('verifiedEmailToken', true);
+        }
+    });
 });

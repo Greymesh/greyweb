@@ -21,7 +21,7 @@
                                 <span class="mdl-textfield__error">Please enter a your email</span>
                             </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" pattern="^(?=.*\d).{6,20}$" id="form-password">
+                                <input class="mdl-textfield__input" type="password" pattern="^(?=.*\d).{6,20}$" id="form-password">
                                 <label class="mdl-textfield__label" for="form-password">Choose a Password</label>
                                 <span class="mdl-textfield__error">Please choose a password</span>
                             </div>
@@ -38,6 +38,23 @@
                 <div class="modal-footer">
                     <div class="text-left">
                         Already a member? <a href="#" class="modal-link" onclick="toggleLoginInOrSignUp();"> Sign in </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<template name="template_email_verification">
+    <div class="modal  fade" id="email_verification" data-backdrop="true" data-keyboard="false" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content verification">
+                <div class="modal-header modal-nobroker-header">
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button" style="float:right;" data-dismiss="modal"><i class="material-icons left">close</i></button>
+                    <h5 class="modal-title">Verify your mail address</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="text-left">
+                        An email verification has been sent to the {{email}} . Please verify the email to proceed to login.
                     </div>
                 </div>
             </div>

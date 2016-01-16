@@ -42,6 +42,10 @@ Meteor.methods({
         console.log(userId);
         Accounts.sendVerificationEmail(userId, userData.email);
         this.setUserId(userId);
+
+        return {
+            "email": userData.email
+        }
     }
 })
 
