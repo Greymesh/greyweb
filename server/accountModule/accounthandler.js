@@ -70,16 +70,5 @@ Meteor.methods({
             throw new Meteor.Error(403, "User not found");
 
         Accounts.sendResetPasswordEmail(user._id, email);
-    },
-    resetPasswordMethod: function(resetData) {
-        console.log('@@@@@@resetPasswordMethod');
-        console.log(resetData.token);
-        console.log(resetData.password);
-        Accounts.resetPassword(resetData.token, resetData.password,
-            function(error) {
-                if (error) {
-                    console.log(error);
-                }
-            });
     }
 });
