@@ -1,64 +1,66 @@
 <template name="template_signup">
-    <div class="modal fade" id="dosignup" data-backdrop="true" data-keyboard="false" style="display: block;" aria-hidden="true">
+    <div class="modal fade" id="dosignup" data-backdrop="true" data-keyboard="false" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content signup">
                 <div class="modal-header modal-nobroker-header">
-                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button" style="float:right;" data-dismiss="modal"><i class="material-icons left">close</i></button>
-                    <h5 class="modal-title">Sign up</h5>
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="signupModal_close" style="float:right;" data-dismiss="modal"><i class="material-icons left">close</i></button>
+                    {{#if getsignupVisible}}
+                        <i class="fa fa-envelope fa-2x"></i>
+                        <h5 class="modal-title" style="padding-left: 10px;display: inline;"> Email sent </h5>
+                    {{else}}
+                        <h5 class="modal-title">Sign up</h5>
+                    {{/if}}
                 </div>
                 <div class="modal-body register row ">
                     <div>
-                        <h6 style="margin-top:5px"> Create a Greymesh account</h6>
-                        <form class="form-horizontal register-form" role="form" method="post" action="#">
-                            <div class="alert alert-danger" style="display:none;">
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input id="form-username" class="mdl-textfield__input" type="text" pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$">
-                                <label class="mdl-textfield__label" for="form-username">Your Name</label>
-                                <span class="mdl-textfield__error">Please enter a name</span>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input id="form-email" class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                                <label class="mdl-textfield__label" for="form-email">Your Email Address</label>
-                                <span class="mdl-textfield__error">Please enter a your email</span>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="password" pattern="^(?=.*\d).{6,20}$" id="form-password">
-                                <label class="mdl-textfield__label" for="form-password">Choose a Password</label>
-                                <span class="mdl-textfield__error">Please choose a password</span>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" pattern="[0-9]{10}" id="form-phone">
-                                <label class="mdl-textfield__label" for="form-phone">Your phone number</label>
-                                <span class="mdl-textfield__error">Please enter phone number</span>
-                            </div>
-                            <button type="submit" id="signUpButton" style="width: 50%;" class="btn btn-ownercontact btn-block btn-large large padded-btn-block"> Sign up </button>
-                        </form>
+                    {{#if getsignupLoading}}
+                        <i class="fa fa-spinner fa-pulse fa-3x"></i>
+                    {{else}}
+                        {{#if getsignupVisible}}
+                            <p>An email verification has been sent to the <b>{{getSignupEmailID}}</b>. </p>
+                            <p>Please verify the email to proceed to login.<i class="fa fa-smile-o fa-2x"></i></p>
+                        {{else}}
+                            <h6 style="margin-top:5px"> Create a Greymesh account</h6>
+                            <form class="form-horizontal register-form" role="form" method="post" action="#">
+                                <div class="alert alert-danger" style="display:none;"></div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input id="form-username" class="mdl-textfield__input" type="text" pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$">
+                                    <label class="mdl-textfield__label" for="form-username">Your Name</label>
+                                    <span class="mdl-textfield__error">Please enter a name</span>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input id="form-email" class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                    <label class="mdl-textfield__label" for="form-email">Your Email Address</label>
+                                    <span class="mdl-textfield__error">Please enter a your email</span>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="password" pattern="^(?=.*\d).{6,20}$" id="form-password">
+                                    <label class="mdl-textfield__label" for="form-password">Choose a Password</label>
+                                    <span class="mdl-textfield__error">Please choose a password</span>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" pattern="[0-9]{10}" id="form-phone">
+                                    <label class="mdl-textfield__label" for="form-phone">Your phone number</label>
+                                    <span class="mdl-textfield__error">Please enter phone number</span>
+                                </div>
+                                <button type="submit" id="signUpButton" style="width: 50%;" class="btn btn-ownercontact btn-block btn-large large padded-btn-block"> Sign up </button>
+                            </form>
+                        {{/if}}
+                    {{/if}}
                     </div>
                 </div>
-                <p>By clicking "Sign up" you confirm that you accept the <a href="#terms_and_conditions" data-toggle="modal" data-dismiss="modal" data-popup="true">Terms of Service</a> and <a href="/privacy" target="_blank" data-popup="true">Privacy Policy</a>.</p>
-                <div class="modal-footer">
-                    <div class="text-left">
-                        Already a member? <a href="#dosignin" class="modal-link" data-toggle="modal" data-dismiss="modal"> Sign in </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-<template name="template_email_verification">
-    <div class="modal  fade" id="email_verification" data-backdrop="true" data-keyboard="false" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content verification">
-                <div class="modal-header modal-nobroker-header">
-                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button" style="float:right;" data-dismiss="modal"><i class="material-icons left">close</i></button>
-                    <h5 class="modal-title">Verify your mail address</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="text-left">
-                        An email verification has been sent to the {{email}} . Please verify the email to proceed to login.
-                    </div>
-                </div>
+                {{#if getsignupLoading}}
+                {{else}}
+                    {{#if getsignupVisible}}
+                    {{else}}
+                        <p>By clicking "Sign up" you confirm that you accept the <a href="#terms_and_conditions" data-toggle="modal" data-dismiss="modal" data-popup="true">Terms of Service</a> and <a href="/privacy" target="_blank" data-popup="true">Privacy Policy</a>.</p>
+                        <div class="modal-footer">
+                            <div class="text-left">
+                                Already a member? <a href="#dosignin" class="modal-link" data-toggle="modal" data-dismiss="modal"> Sign in </a>
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/if}}
             </div>
         </div>
     </div>

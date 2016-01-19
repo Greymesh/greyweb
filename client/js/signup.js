@@ -23,10 +23,13 @@ Template.template_signup.events({
                     "name": name
                 }
             }
+            Session.set('s_signupLoading', true);
+            console.log(Session.get("s_signupLoading"));
             Meteor.call('createNewUser', data, function(err, result) {
+                Session.set('s_signupLoading', false);
+                console.log(err);
                 if (err) {
                     console.log('createNewUser Login failed');
-
                     signUpForm
                         .find(".alert")
                         .html("Error! " + err["reason"])
@@ -34,38 +37,40 @@ Template.template_signup.events({
                         .delay(5000)
                         .fadeOut();
                 } else {
-                    var email = result["email"];
-                    $('.modal').modal('hide');
+                    Session.set('s_signupEmailID', email);
+                    Session.set('s_signupVisible', true);
+                    console.log(Session.get("s_signupEmailID"));
+                    console.log(Session.get("s_signupVisible"));
                     signUpForm.find("input").val("");
-
-                    Session.set("verificationEmail", email);
-
-                    $("#email_verification").modal('show')
                 }
             })
-
-
         }
         return false;
+    },
+    'click #signupModal_close': function() {
+        console.log('click #signupModal_close');
+        Meteor.setTimeout(function() {
+            Session.set('s_signupLoading', false);
+            Session.set('s_signupVisible', false);
+            Session.set('s_signupEmailID', null);
+        }, 2000);
+        console.log(Session.get('s_signupLoading'));
+        console.log(Session.get('s_signupVisible'));
+        console.log(Session.get('s_signupEmailID'));
     }
 });
 
-Template.template_email_verification.helpers({
-    isEmailVerified: function() {
-        var verifToken = Session.get('verifiedEmailToken');
-        if (verifToken) {
-            return true;
-        } else {
-            return false;
-        }
+Template.template_signup.helpers({
+    getsignupLoading: function() {
+        return Session.get("s_signupLoading");
     },
-    email: function() {
-        return Session.get("verificationEmail");
-
-
-    }
+    getsignupEmailID: function() {
+        return Session.get('s_signupEmailID');
+    },
+    getsignupVisible: function() {
+        return Session.get('s_signupVisible');
+    },
 })
-
 
 Accounts.onEmailVerificationLink(function(token, done) {
     console.log('verify Email Token Accounts onEmailVerificationLink');

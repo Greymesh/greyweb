@@ -15,7 +15,9 @@ Template.template_signin.events({
                 email: email,
                 password: password,
             }
+            Session.set('s_signinLoading', true);
             Meteor.loginWithPassword(email, password, function(err) {
+                Session.set('s_signinLoading', false);
                 if (err) {
                     console.log('These credentials are not valid.');
                     $("#dosignin")
@@ -49,4 +51,17 @@ Template.template_signin.events({
             }
         });
     },
+    'click #signinModal_close': function() {
+        console.log('click #signinModal_close');
+        Meteor.setTimeout(function() {
+            Session.set('s_signinLoading', false);
+        }, 2000);
+        console.log(Session.get('s_signinLoading'));
+    },
 });
+
+Template.template_signup.helpers({
+    getsigninLoading: function() {
+        return Session.get("s_signinLoading");
+    }
+})
