@@ -1,74 +1,91 @@
-/* pass in more information to the client*/
-Accounts.onCreateUser(function(options, user) {
-    console.log("loggggggggggggggggggggggggggggggg")
-    console.log(options);
-    console.log(user);
-    if (options.profile)
-        user.profile = options.profile
+   BetaSubscribe = new Mongo.Collection("betasubscribe");
+   NewsLetter = new Mongo.Collection("newsletter");
 
-    if (user.services) {
-        if (user.services.facebook) {
-            var service = user.services.facebook;
-            user.profile["email"] = service["email"];
-        }
-        if (user.services.google) {
-            var service = user.services.google;
-            user.profile["email"] = service["email"];
-            user.profile["picture"] = service["picture"];
+   /* pass in more information to the client*/
+   Accounts.onCreateUser(function(options, user) {
+       console.log("loggggggggggggggggggggggggggggggg")
+       console.log(options);
+       console.log(user);
+       if (options.profile)
+           user.profile = options.profile
 
-        }
-    }
-    console.log("this is user");
-    console.log(user);
-    return user;
-})
+       if (user.services) {
+           if (user.services.facebook) {
+               var service = user.services.facebook;
+               user.profile["email"] = service["email"];
+           }
+           if (user.services.google) {
+               var service = user.services.google;
+               user.profile["email"] = service["email"];
+               user.profile["picture"] = service["picture"];
 
-Accounts.config({
-    sendVerificationEmail: true,
-    forbidClientAccountCreation: true
-})
+           }
+       }
+       console.log("this is user");
+       console.log(user);
+       return user;
+   })
 
-Meteor.methods({
-    'createNewUser': function(userData) {
-        console.log("hereeeeeeeeeeeeeeee")
-        var user = Meteor.user();
-        console.log(user)
+   Accounts.config({
+       sendVerificationEmail: true,
+       forbidClientAccountCreation: true
+   })
 
-        if (!userData.email)
-            throw new Meteor.Error(422, 'Please include an email.');
+   Meteor.methods({
+       'createNewUser': function(userData) {
+           console.log("hereeeeeeeeeeeeeeee")
+           var user = Meteor.user();
+           console.log(user)
 
-        console.log("success")
-        var userId = Accounts.createUser(userData);
-        console.log(userId);
-        Accounts.sendVerificationEmail(userId, userData.email);
-        this.setUserId(userId);
+           if (!userData.email)
+               throw new Meteor.Error(422, 'Please add email.');
 
-        return {
-            "email": userData.email
-        }
-    }
-})
+           console.log("success")
+           var userId = Accounts.createUser(userData);
+           console.log(userId);
+           Accounts.sendVerificationEmail(userId, userData.email);
+           this.setUserId(userId);
 
-///
-/// RESETTING VIA EMAIL
-///
+           return {
+               "email": userData.email
+           }
+       }
+   })
 
-// Method called by a user to request a password reset email. This is
-// the start of the reset process.
-Meteor.methods({
-    forgotPasswordMethod: function(options) {
-        var email = options.email;
-        console.log('@@@@@@forgotPasswordMethod');
-        console.log(email);
-        if (!email)
-            throw new Meteor.Error(400, "Need to set options.email");
+   ///
+   /// RESETTING VIA EMAIL
+   ///
 
-        var user = Meteor.users.findOne({
-            "emails.address": email
-        });
-        if (!user)
-            throw new Meteor.Error(403, "User not found");
+   // Method called by a user to request a password reset email. This is
+   // the start of the reset process.
+   Meteor.methods({
+       forgotPasswordMethod: function(options) {
+           var email = options.email;
+           console.log('@@@@@@ forgotPasswordMethod');
+           console.log(email);
+           if (!email)
+               throw new Meteor.Error(400, "Need to set options.email");
 
-        Accounts.sendResetPasswordEmail(user._id, email);
-    }
-});
+           var user = Meteor.users.findOne({
+               "emails.address": email
+           });
+           if (!user)
+               throw new Meteor.Error(403, "User not found");
+
+           Accounts.sendResetPasswordEmail(user._id, email);
+       },
+
+       subscribeMethod: function(options) {
+           var email = options.email;
+           console.log('@@@@@@ subscribeMethod');
+           console.log(email);
+           if (!email)
+               throw new Meteor.Error(400, "Please enter email");
+
+           BetaSubscribe.insert({
+               email: email,
+               createdAt: new Date()
+           });
+       },
+
+   });

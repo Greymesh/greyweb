@@ -8,7 +8,8 @@
                         <i class="fa fa-envelope fa-2x"></i>
                         <h5 class="modal-title" style="padding-left: 10px;display: inline;"> Email sent </h5>
                     {{else}}
-                        <h5 class="modal-title">Sign up</h5>
+                        <i class="fa fa-user-plus fa-2x"></i>
+                        <h5 class="modal-title" style="padding-left: 10px;display: inline;"> Sign up </h5>
                     {{/if}}
                 </div>
                 <div class="modal-body register row ">
@@ -24,14 +25,14 @@
                             <form class="form-horizontal register-form" role="form" method="post" action="#">
                                 <div class="alert alert-danger" style="display:none;"></div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input id="form-username" class="mdl-textfield__input" type="text" pattern="^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$">
+                                    <input id="form-username" class="mdl-textfield__input" type="text" pattern="^(?=.{0,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$">
                                     <label class="mdl-textfield__label" for="form-username">Your Name</label>
                                     <span class="mdl-textfield__error">Please enter a name</span>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input id="form-email" class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                                     <label class="mdl-textfield__label" for="form-email">Your Email Address</label>
-                                    <span class="mdl-textfield__error">Please enter a your email</span>
+                                    <span class="mdl-textfield__error">Please enter a valid email</span>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="password" pattern="^(?=.*\d).{6,20}$" id="form-password">

@@ -1,6 +1,7 @@
 Template.template_signup.rendered = function() {
     $('#dosignup').hide();
 }
+
 Template.template_signup.events({
     'submit .register-form': function(e, t) {
         e.preventDefault();
@@ -9,10 +10,23 @@ Template.template_signup.events({
             name = trimInput(signUpForm.find('#form-username').val().toLowerCase()),
             email = trimInput(signUpForm.find('#form-email').val().toLowerCase()),
             password = signUpForm.find('#form-password').val(),
-            passwordConfirm = signUpForm.find('#form-confirm-password').val(),
             phone = signUpForm.find('#form-phone').val();
+        var emptyError = "";
 
-        if (isNotEmpty(email) && isNotEmpty(password) && isEmail(email)) {
+        if (isNotEmpty(phone)) {} else {
+            emptyError = "Phone cannot be Empty."
+        }
+        if (isNotEmpty(password)) {} else {
+            emptyError = "Password cannot be Empty."
+        }
+        if (isNotEmpty(email)) {} else {
+            emptyError = "Email cannot be Empty."
+        }
+        if (isNotEmpty(name)) {} else {
+            emptyError = "Name cannot be Empty."
+        }
+
+        if (isNotEmpty(email) && isNotEmpty(password) && isNotEmpty(name) && isNotEmpty(phone) && isEmail(email)) {
             var data = {
                 username: name,
                 email: email,
@@ -44,19 +58,24 @@ Template.template_signup.events({
                     signUpForm.find("input").val("");
                 }
             })
+        } else {
+            signUpForm
+                .find(".alert")
+                .html("Error! " + emptyError)
+                .fadeIn()
+                .delay(5000)
+                .fadeOut();
         }
         return false;
     },
-    'click #signupModal_close': function() {
-        console.log('click #signupModal_close');
+    'hide.bs.modal #dosignup': function(e) {
+        console.log('hide.bs.modal #dosignup');
         Meteor.setTimeout(function() {
             Session.set('s_signupLoading', false);
             Session.set('s_signupVisible', false);
             Session.set('s_signupEmailID', null);
         }, 2000);
-        console.log(Session.get('s_signupLoading'));
-        console.log(Session.get('s_signupVisible'));
-        console.log(Session.get('s_signupEmailID'));
+        Template.instance().find("form").reset();
     }
 });
 
@@ -69,7 +88,7 @@ Template.template_signup.helpers({
     },
     getsignupVisible: function() {
         return Session.get('s_signupVisible');
-    },
+    }
 })
 
 Accounts.onEmailVerificationLink(function(token, done) {

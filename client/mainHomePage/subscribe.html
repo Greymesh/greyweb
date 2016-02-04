@@ -1,46 +1,55 @@
 <template name="template_subscribe">
-    <section id="subscribe" class="section hierarchical-timig fp-section fp-table active" data-anchor="subscribePage" data-delay="500" style="height: 304px;">
-        <div class="fp-tableCell" style="height:304px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="check-inview fadeup inview" style="transition-delay: 500ms;">
-                            <header>
-                                <h2>subscribe to our newsletter <br>and be one of our early alpha testers.</h2>
-                            </header>
-                        </div>
-                    </div>
-                    <div class="col m8 offset-m2 center">
-                        <article class="check-inview fadeup inview" style="transition-delay: 1000ms;">
-                            <p>
-                                Follow us on <a target="_blank" href="https://twitter.com/lifeaweso_me">twitter</a>, on our <a target="_blank" href="http://blog.lifeaweso.me">blog</a> and don't forget to signup to our newsletter.
-                                <br> All subscribers will have access to our alpha release as soon as it become available. Stay tuned!
-                            </p>
-                        </article>
+    <section id="subscribe" style="margin-top: 24px;margin-bottom: 24px;">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="check-inview fadeup inview" style="transition-delay: 500ms;">
+                        <header>
+                            <h2>Subscribe to our newsletter <br>and be one of our early alpha testers.</h2>
+                        </header>
                     </div>
                 </div>
-                <div class="row no-margin-bottom">
-                    <div class="col s12 m4 offset-m4 center">
-                        <article class="check-inview fadeup inview" style="transition-delay: 1500ms;">
-                            <div id="mc_embed_signup">
-                                <form action="//lifeaweso.us9.list-manage.com/subscribe/post?u=4bab67f66ed60185e497e4af6&amp;id=d0808d7289" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
-                                    <div id="mc_embed_signup_scroll">
-                                        <input type="email" placeholder="your e-mail" value="" name="EMAIL" class="your email" id="mce-EMAIL">
-                                        <button type="submit" value="notify me" name="subscribe" id="mc-embedded-subscribe" class="waves-effect waves-light btn-large cyan">notify me</button>
-                                        <div id="mce-responses" class="clear">
-                                            <div class="response" id="mce-error-response" style="display:none"></div>
-                                            <div class="response" id="mce-success-response" style="display:none"></div>
-                                        </div>
-                                        <div style="position: absolute; left: -5000px; width: 0;">
-                                            <input type="text" name="b_4bab67f66ed60185e497e4af6_d0808d7289" tabindex="-1" value="">
-                                        </div>
-                                    </div>
-                                </form>
+                <div class="col m8 offset-m2 center">
+                    <article class="check-inview fadeup inview" style="transition-delay: 1000ms;">
+                        <p> Follow us on <a target="_blank" href="https://twitter.com/lifeaweso_me">twitter</a>, on our <a target="_blank" href="http://blog.lifeaweso.me">blog</a> and don't forget to signup to our newsletter.
+                            <br> All subscribers will have access to our alpha release as soon as it become available. Stay tuned!</p>
+                    </article>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m4 offset-m4 center">
+                    {{#if loading}}
+                        <h5><article>Thank you, Now you are Subscribed to our updates!</article></h5>
+                    {{else}}
+                        <form class="form-horizontal subscribe-form" method="post" id="subscribeForm">
+                            <div class="alert alert-danger" style="display:none;"></div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="margin-right: 16px;">
+                                <input id="subscribeEmail" class="mdl-textfield__input" type="text" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                <label class="mdl-textfield__label" for="subscribe-email">Your Email Address</label>
+                                <span class="mdl-textfield__error">Please enter a your email</span>
                             </div>
-                        </article>
-                    </div>
+                            <button type="submit" id="subscribeButton" class="btn btn-ownercontact button btn-block btn-large large padded-btn-block"> Notify me! </button>
+                        </form>
+                    {{/if}}
                 </div>
             </div>
         </div>
     </section>
+</template>
+<template name="template_subscribe_confirmation">
+    <div class="modal fade" id="subscribeConfirmation" data-backdrop="true" data-keyboard="false" style="display: block;" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-nobroker-header">
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="signinModal_close" style="float:right;" data-dismiss="modal"><i class="material-icons left">close</i></button>
+                    <i class="fa fa-sign-in fa-2x"></i>
+                    <h5 class="modal-title" style="padding-left: 10px;display: inline;"> News Letter Subscription </h5>
+                </div>
+                <div class="modal-body register row">
+                    {{#if getsigninLoading}} {{else}} {{/if}}
+                </div>
+                {{#if getsigninLoading}} {{else}} {{/if}}
+            </div>
+        </div>
+    </div>
 </template>

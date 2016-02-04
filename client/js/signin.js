@@ -10,6 +10,13 @@ Template.template_signin.events({
         var signInForm = $(e.currentTarget),
             email = trimInput(signInForm.find('#form-username').val().toLowerCase()),
             password = signInForm.find('#form-password').val();
+        if (isNotEmpty(password)) {} else {
+            emptyError = "Password cannot be Empty."
+        }
+        if (isNotEmpty(email)) {} else {
+            emptyError = "Email cannot be Empty."
+        }
+
         if (isNotEmpty(email) && isNotEmpty(password) && isEmail(email)) {
             var data = {
                 email: email,
@@ -30,6 +37,13 @@ Template.template_signin.events({
                     $("#dosignin").find("input").val("")
                 }
             });
+        } else {
+            $("#dosignin")
+                .find(".alert")
+                .html("Error! " + emptyError)
+                .fadeIn()
+                .delay(5000)
+                .fadeOut();
         }
         return false;
     },
@@ -51,13 +65,13 @@ Template.template_signin.events({
             }
         });
     },
-    'click #signinModal_close': function() {
-        console.log('click #signinModal_close');
+    'hide.bs.modal #dosignin': function(e) {
+        console.log('hide.bs.modal #dosignin');
         Meteor.setTimeout(function() {
             Session.set('s_signinLoading', false);
         }, 2000);
         console.log(Session.get('s_signinLoading'));
-    },
+    }
 });
 
 Template.template_signup.helpers({

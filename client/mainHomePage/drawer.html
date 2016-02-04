@@ -1,6 +1,11 @@
 <template name="template_drawer">
     <div class="android-drawer mdl-layout__drawer mdl-layout--small-screen-only">
-        <span class="mdl-layout-title "><img class="android-logo-image " style="height:50px" src="images/logo_colored.png"></span>
+        <a href="#" id="navbar_close" class="yay-toggle">
+            <div class="burg1"></div>
+            <div class="burg2"></div>
+            <div class="burg3"></div>
+        </a>
+        <span class="mdl-layout-title"><img class="android-logo-image " style="height:50px" src="images/logo_colored.png"></span>
         <nav id="navbar_mobile" class="mdl-navigation ">
             <a class="mdl-navigation__link" href=""> Download app </a>
             <a class="mdl-navigation__link" href=""> Contact Us </a>
@@ -10,8 +15,9 @@
                 <li><a href="# ">WhatsApp &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0-0000-000-000</a></li>
                 <li><a href="/careers ">Apply for job</a></li>
             </ul>
-            <a class="mdl-navigation__link" data-backdrop="true" data-toggle="modal" href="#dosignup">SignUp</a>
-            <a class="mdl-navigation__link" data-backdrop="true" data-toggle="modal" href="#dosignin">SignIn</a>
+            <a class="mdl-navigation__link" data-backdrop="true" data-toggle="modal" href="#dosignup">Sign Up</a>
+            <a class="mdl-navigation__link" data-backdrop="true" data-toggle="modal" href="#dosignin">Sign In</a>
         </nav>
     </div>
+    <div class="mdl-layout__obfuscator"></div>
 </template>

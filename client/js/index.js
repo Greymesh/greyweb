@@ -2,6 +2,7 @@
       console.log('onSuccessfulLogin');
       $("#dosignin").modal('hide');
       $("#dosignup").modal('hide');
+      $(".modal").hide();
       $('.modal-backdrop').remove();
       Router.go('/home');
   });
